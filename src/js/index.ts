@@ -1,12 +1,31 @@
-interface Person {
-    firstName: string;
-    lastName: string;
+function DoIt() {
+    let inputElement: HTMLInputElement = <HTMLInputElement>document.getElementById("input");
+    let inputString: string = inputElement.value;
+
+    let selectionElement: HTMLSelectElement = <HTMLSelectElement>document.getElementById("select");
+    let selection: string = selectionElement.value;
+
+    let answerString: string = ToCase(selection, inputString)
+    let outputElement: HTMLInputElement = <HTMLInputElement>document.getElementById("result")
+    outputElement.innerHTML = answerString;
 }
 
-function greeter(person: Person): string {
-    return "Hello, " + person.firstName + " " + person.lastName;
-}
-let user: Person = { firstName: "John", lastName: "Doe" };
+function ToCase(selection: string, input: string) {
+    switch (selection) {
+        case "upper":
+            let upper: string = input.toUpperCase();
+            return upper;
+            break;
+        case "lower":
+            let lower: string = input.toLowerCase();
+            return lower;
+            break;
+        case "default":
+            return input;
+            break;
+    }
 
-let element: HTMLDivElement = <HTMLDivElement> document.getElementById("content");
-element.innerHTML = greeter(user);
+}
+
+let theBUTTON: HTMLButtonElement = <HTMLInputElement>document.getElementById("button");
+theBUTTON.addEventListener("click", DoIt)
